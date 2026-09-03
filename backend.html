@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin - JAGGER & 4 IN 1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .model-selector {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .model-selector label {
+            font-weight: 600;
+            color: #333;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .model-selector select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            background: white;
+            cursor: pointer;
+        }
+        
+        .model-selector select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .badge-modelo {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .message.success {
+            display: block;
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .message.error {
+            display: block;
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .message.loading {
+            display: block;
+            background: #cce5ff;
+            color: #004085;
+            border: 1px solid #b8daff;
+        }
+        
+        .product-list {
+            margin-top: 40px;
+            border-top: 2px solid #f0f0f0;
+            padding-top: 30px;
+        }
+        
+        .product-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            transition: background 0.2s;
+        }
+        
+        .product-item:hover {
+            background: #e9ecef;
+        }
+        
+        .product-info {
+            flex: 1;
+        }
+        
+        .product-name {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .product-price {
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        
+        .delete-btn:hover {
+            background: #c82333;
+        }
+        
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .loading-spinner.active {
+            display: block;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .model-tag {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 0.7em;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        
+        .stats {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat-box {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .stat-box .number {
+            font-size: 2em;
+            font-weight: 700;
+            color: #667eea;
+        }
+        
+        .stat-box .label {
+            color: #666;
+            font-size: 0.85em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏷️ Panel de Administración</h1>
+        <p class="subtitle">Gestiona productos de <strong>JAGGER</strong> y <strong>4 IN 1</strong></p>
+        
+        <!-- Selector de Modelo -->
+        <div class="model-selector">
+            <label for="modeloSelect">📌 Seleccionar Modelo:</label>
+            <select id="modeloSelect" onchange="cambiarModelo()">
+                <option value="">Cargando modelos...</option>
+            </select>
+            <div class="stats" id="statsContainer">
+                <div class="stat-box">
+                    <div class="number" id="totalProductos">0</div>
+                    <div class="label">Total Productos</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number" id="modeloActual">-</div>
+                    <div class="label">Modelo Actual</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Formulario -->
+        <form id="productForm">
+            <div class="form-group">
+                <label for="nombre">Nombre del Producto *</label>
+                <input type="text" id="nombre" required placeholder="Ej: Camiseta Deportiva">
+            </div>
+            
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <textarea id="descripcion" placeholder="Describe tu producto..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="precio">Precio (€) *</label>
+                <input type="number" id="precio" required step="0.01" placeholder="19.99">
+            </div>
+            
+            <div class="form-group">
+                <label for="imagenURL">URL de la Imagen</label>
+                <input type="url" id="imagenURL" placeholder="https://ejemplo.com/imagen.jpg">
+            </div>
+            
+            <div class="form-group">
+                <label for="stock">Stock</label>
+                <input type="number" id="stock" value="10" min="0">
+            </div>
+            
+            <div class="form-group">
+                <label for="categoria">Categoría</label>
+                <select id="categoria">
+                    <option value="General">General</option>
+                    <option value="Ropa">Ropa</option>
+                    <option value="Electrónicos">Electrónicos</option>
+                    <option value="Hogar">Hogar</option>
+                    <option value="Deportes">Deportes</option>
+                    <option value="Libros">Libros</option>
+                    <option value="Accesorios">Accesorios</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="btn">➕ Agregar Producto</button>
+        </form>
+        
+        <div id="message" class="message"></div>
+        
+        <div class="loading-spinner" id="loadingSpinner">
+            <div class="spinner"></div>
+            <p style="margin-top: 10px; color: #666;">Cargando productos...</p>
+        </div>
+        
+        <div class="product-list">
+            <h2 style="margin-bottom: 20px; color: #333;">📦 Productos</h2>
+            <div id="productList"></div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // CONFIGURACIÓN - URL DE TU API
+        // ============================================
+        const API_URL = "https://script.google.com/macros/s/AKfycbwhVw_mk6dPeYo8y2-x0hPspuzxRqx4LKYLXSGXMhNmkBdtI7yka0v2KRdGkPniBaLc/exec";
+        
+        let modeloActual = "";
+        let todosLosProductos = [];
+        
+        // ============================================
+        // CARGAR MODELOS
+        // ============================================
+        async function cargarModelos() {
+            try {
+                const response = await fetch(`${API_URL}?action=obtenerModelos`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    const select = document.getElementById('modeloSelect');
+                    select.innerHTML = '';
+                    data.modelos.forEach(modelo => {
+                        const option = document.createElement('option');
+                        option.value = modelo;
+                        option.textContent = modelo;
+                        select.appendChild(option);
+                    });
+                    
+                    if (data.modelos.length > 0) {
+                        select.value = data.modelos[0];
+                        modeloActual = data.modelos[0];
+                        cargarProductos(modeloActual);
+                    }
+                } else {
+                    showMessage('Error al cargar modelos: ' + data.error, 'error');
+                }
+            } catch (error) {
+                showMessage('Error de conexión: ' + error.message, 'error');
+            }
+        }
+        
+        // ============================================
+        // CAMBIAR MODELO
+        // ============================================
+        function cambiarModelo() {
+            const select = document.getElementById('modeloSelect');
+            modeloActual = select.value;
+            if (modeloActual) {
+                cargarProductos(modeloActual);
+            }
+        }
+        
+        // ============================================
+        // CARGAR PRODUCTOS DE UN MODELO
+        // ============================================
+        async function cargarProductos(modelo) {
+            const spinner = document.getElementById('loadingSpinner');
+            const productList = document.getElementById('productList');
+            spinner.classList.add('active');
+            
+            document.getElementById('modeloActual').textContent = modelo;
+            
+            try {
+                const response = await fetch(`${API_URL}?action=obtenerPorModelo&modelo=${encodeURIComponent(modelo)}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    todosLosProductos = data.productos;
+                    document.getElementById('totalProductos').textContent = todosLosProductos.length;
+                    
+                    if (todosLosProductos.length === 0) {
+                        productList.innerHTML = '<p style="color: #666; text-align: center; padding: 20px;">No hay productos en este modelo. ¡Agrega tu primer producto!</p>';
+                    } else {
+                        productList.innerHTML = todosLosProductos.map(producto => `
+                            <div class="product-item">
+                                <div class="product-info">
+                                    <div class="product-name">
+                                        ${producto.Nombre || 'Sin nombre'}
+                                        <span class="model-tag">${modelo}</span>
+                                    </div>
+                                    <div style="color: #666; font-size: 14px;">
+                                        ${producto.Categoría || 'General'} • Stock: ${producto.Stock || 0}
+                                    </div>
+                                    <div class="product-price">${producto.Precio ? '€' + parseFloat(producto.Precio).toFixed(2) : 'Precio no disponible'}</div>
+                                </div>
+                                <button class="delete-btn" onclick="eliminarProducto('${modelo}', ${producto.ID})">Eliminar</button>
+                            </div>
+                        `).join('');
+                    }
+                } else {
+                    showMessage('Error al cargar productos: ' + data.error, 'error');
+                }
+            } catch (error) {
+                showMessage('Error de conexión: ' + error.message, 'error');
+            } finally {
+                spinner.classList.remove('active');
+            }
+        }
+        
+        // ============================================
+        // MOSTRAR MENSAJE
+        // ============================================
+        function showMessage(text, type = 'success') {
+            const msg = document.getElementById('message');
+            msg.textContent = text;
+            msg.className = 'message ' + type;
+            
+            if (type !== 'loading') {
+                setTimeout(() => {
+                    msg.className = 'message';
+                }, 5000);
+            }
+        }
+        
+        // ============================================
+        // AGREGAR PRODUCTO
+        // ============================================
+        document.getElementById('productForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            if (!modeloActual) {
+                showMessage('❌ Selecciona un modelo primero', 'error');
+                return;
+            }
+            
+            const formData = new FormData(this);
+            const params = new URLSearchParams();
+            params.append('action', 'agregar');
+            params.append('modelo', modeloActual);
+            params.append('nombre', formData.get('nombre'));
+            params.append('descripcion', formData.get('descripcion'));
+            params.append('precio', formData.get('precio'));
+            params.append('imagenURL', formData.get('imagenURL'));
+            params.append('stock', formData.get('stock'));
+            params.append('categoria', formData.get('categoria'));
+            
+            showMessage('Agregando producto...', 'loading');
+            
+            try {
+                const response = await fetch(`${API_URL}?${params.toString()}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    showMessage('✅ ' + data.message, 'success');
+                    this.reset();
+                    cargarProductos(modeloActual);
+                } else {
+                    showMessage('❌ Error: ' + data.error, 'error');
+                }
+            } catch (error) {
+                showMessage('❌ Error de conexión: ' + error.message, 'error');
+            }
+        });
+        
+        // ============================================
+        // ELIMINAR PRODUCTO
+        // ============================================
+        async function eliminarProducto(modelo, id) {
+            if (!confirm(`¿Estás seguro de eliminar el producto #${id} del modelo ${modelo}?`)) return;
+            
+            showMessage('Eliminando producto...', 'loading');
+            
+            try {
+                const response = await fetch(`${API_URL}?action=eliminar&modelo=${encodeURIComponent(modelo)}&id=${id}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    showMessage('✅ Producto eliminado', 'success');
+                    cargarProductos(modelo);
+                } else {
+                    showMessage('❌ Error: ' + data.error, 'error');
+                }
+            } catch (error) {
+                showMessage('❌ Error de conexión: ' + error.message, 'error');
+            }
+        }
+        
+        // ============================================
+        // INICIAR
+        // ============================================
+        cargarModelos();
+    </script>
+</body>
+</html>
