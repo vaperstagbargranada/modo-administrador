@@ -230,21 +230,35 @@
             align-items: center;
             padding-top: 10px;
             border-top: 1px solid #eee;
+            gap: 6px;
         }
         .preview-card .preview-price {
-            font-size: 1.2em;
+            font-size: 1.1em;
             font-weight: 800;
             color: #1a1a2e;
         }
+        
+        /* ESTILO DEL BOTÓN IGUAL AL FRONTEND */
         .preview-card .preview-btn {
             background: #1a1a2e;
             color: white;
             border: none;
             padding: 6px 12px;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 0.75em;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.72em;
+            cursor: pointer;
             text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+        }
+        .preview-card .preview-btn svg {
+            width: 14px;
+            height: 14px;
+            stroke: #ffffff;
+            fill: none;
         }
 
         /* MENSAJES */
@@ -379,7 +393,13 @@
                             <div class="preview-description" id="previewDescription">Descripción corta del producto.</div>
                             <div class="preview-footer">
                                 <div class="preview-price" id="previewPrice">€0.00</div>
-                                <button type="button" class="preview-btn" id="previewBtn">🛒 Agregar</button>
+                                <button type="button" class="preview-btn" id="previewBtn">
+                                    <svg viewBox="0 0 24 24" stroke-width="2">
+                                        <circle cx="9" cy="21" r="1"></circle>
+                                        <circle cx="20" cy="21" r="1"></circle>
+                                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                    </svg> Añadir
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -468,7 +488,13 @@
                 btn.disabled = true;
                 btn.style.opacity = '0.6';
             } else {
-                btn.textContent = '🛒 Agregar';
+                btn.innerHTML = `
+                    <svg viewBox="0 0 24 24" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg> Añadir
+                `;
                 btn.disabled = false;
                 btn.style.opacity = '1';
             }
