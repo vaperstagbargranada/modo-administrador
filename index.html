@@ -61,59 +61,12 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.06);
         }
 
-        /* SELECTOR MODELO */
-        .model-selector {
-            background: #f8f9fc;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            border: 1px solid #e8ecf1;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 20px;
-        }
-        .model-selector label {
-            font-weight: 700;
-            color: #1a1a2e;
-        }
-        .model-selector select {
-            padding: 10px 18px;
-            border: 2px solid #dce0e6;
-            border-radius: 8px;
-            font-size: 1em;
-            background: white;
-            min-width: 180px;
-            font-weight: 600;
-        }
-        .model-selector select:focus {
-            outline: none;
-            border-color: #1a1a2e;
-        }
-
-        .stats {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-left: auto;
-        }
-        .stat-box {
-            background: white;
-            padding: 8px 20px;
-            border-radius: 8px;
-            border: 1px solid #e8ecf1;
-            text-align: center;
-        }
-        .stat-box .number {
-            font-size: 1.6em;
-            font-weight: 800;
-            color: #1a1a2e;
-        }
-        .stat-box .label {
-            font-size: 0.7em;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        /* LAYOUT FORMULARIO + PREVISUALIZACIÓN */
+        .editor-container {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+            align-items: start;
         }
 
         /* FORMULARIO */
@@ -178,6 +131,122 @@
             transform: scale(1.01);
         }
 
+        /* ESTILOS DE PREVISUALIZACIÓN */
+        .preview-section {
+            background: #f8f9fc;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #e8ecf1;
+        }
+        .preview-section h3 {
+            font-size: 0.85em;
+            text-transform: uppercase;
+            color: #888;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .preview-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+        .preview-card .preview-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: #f0f0f0;
+        }
+        .preview-card .preview-image-placeholder {
+            width: 100%;
+            height: 200px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            color: #ccc;
+        }
+        .preview-card .preview-body {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+        .preview-card .preview-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+        .preview-card .preview-model {
+            background: #1a1a2e;
+            color: white;
+            font-size: 0.6em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 2px 10px;
+            border-radius: 20px;
+        }
+        .preview-card .preview-category {
+            background: #e8e8e8;
+            color: #333;
+            font-size: 0.6em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 2px 10px;
+            border-radius: 20px;
+        }
+        .preview-card .preview-new-badge {
+            background: #e74c3c;
+            color: white;
+            font-size: 0.6em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 2px 8px;
+            border-radius: 20px;
+            display: none;
+        }
+        .preview-card .preview-name {
+            font-size: 1em;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+        .preview-card .preview-description {
+            color: #666;
+            font-size: 0.8em;
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+        .preview-card .preview-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+        .preview-card .preview-price {
+            font-size: 1.2em;
+            font-weight: 800;
+            color: #1a1a2e;
+        }
+        .preview-card .preview-btn {
+            background: #1a1a2e;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.75em;
+            text-transform: uppercase;
+        }
+
         /* MENSAJES */
         .message {
             margin-top: 20px;
@@ -205,94 +274,10 @@
             border: 1px solid #b8daff;
         }
 
-        /* LISTA PRODUCTOS */
-        .product-list {
-            margin-top: 40px;
-            border-top: 2px solid #f0f2f5;
-            padding-top: 25px;
-        }
-        .product-list h2 {
-            font-size: 1.2em;
-            color: #1a1a2e;
-            margin-bottom: 15px;
-        }
-
-        .product-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 14px 18px;
-            background: #f8f9fc;
-            border-radius: 10px;
-            margin-bottom: 8px;
-            transition: background 0.2s;
-            border: 1px solid transparent;
-        }
-        .product-item:hover {
-            background: #f0f2f5;
-            border-color: #e0e4ea;
-        }
-        .product-item .info {
-            flex: 1;
-        }
-        .product-item .name {
-            font-weight: 700;
-            color: #1a1a2e;
-        }
-        .product-item .meta {
-            font-size: 0.8em;
-            color: #888;
-            margin-top: 2px;
-        }
-        .product-item .price {
-            font-weight: 700;
-            color: #1a1a2e;
-            margin-right: 20px;
-        }
-        .product-item .model-tag {
-            background: #1a1a2e;
-            color: white;
-            padding: 2px 10px;
-            border-radius: 20px;
-            font-size: 0.65em;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-left: 8px;
-        }
-        .delete-btn {
-            background: #e74c3c;
-            color: white;
-            border: none;
-            padding: 6px 16px;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 0.8em;
-            transition: background 0.2s;
-        }
-        .delete-btn:hover {
-            background: #c0392b;
-        }
-
-        .loading-spinner {
-            display: none;
-            text-align: center;
-            padding: 30px;
-        }
-        .loading-spinner.active {
-            display: block;
-        }
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid #eee;
-            border-top-color: #1a1a2e;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin: 0 auto 10px;
-        }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        @media (max-width: 850px) {
+            .editor-container {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 700px) {
@@ -302,24 +287,9 @@
             .form-grid .full-width {
                 grid-column: 1;
             }
-            .model-selector {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .stats {
-                margin-left: 0;
-                justify-content: center;
-            }
             .admin-header {
                 flex-direction: column;
                 text-align: center;
-            }
-            .product-item {
-                flex-wrap: wrap;
-                gap: 8px;
-            }
-            .product-item .price {
-                margin-right: 0;
             }
         }
     </style>
@@ -336,72 +306,87 @@
         </div>
 
         <div class="admin-body">
-            <!-- SELECTOR MODELO -->
-            <div class="model-selector">
-                <label for="modeloSelect">📌 Modelo:</label>
-                <select id="modeloSelect" onchange="cambiarModelo()">
-                    <option value="">Cargando...</option>
-                </select>
-                <div class="stats">
-                    <div class="stat-box">
-                        <div class="number" id="totalProductos">0</div>
-                        <div class="label">Productos</div>
+            <!-- EDITOR Y PREVISUALIZACIÓN -->
+            <div class="editor-container">
+                <!-- FORMULARIO -->
+                <form id="productForm" class="form-grid">
+                    <div class="form-group full-width">
+                        <label for="nombre">Nombre del producto *</label>
+                        <input type="text" id="nombre" name="nombre" required placeholder="Ej: Perfume Floral 100ml">
                     </div>
-                    <div class="stat-box">
-                        <div class="number" id="modeloActual">-</div>
-                        <div class="label">Activo</div>
+
+                    <div class="form-group full-width">
+                        <label for="descripcion">Descripción</label>
+                        <textarea id="descripcion" name="descripcion" placeholder="Describe la fragancia o producto..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="modeloSelect">Modelo / Marca *</label>
+                        <select id="modeloSelect" required onchange="cambiarModelo()">
+                            <option value="">Cargando modelos...</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="categoria">Categoría</label>
+                        <select id="categoria" name="categoria">
+                            <option value="Perfumes">Perfumes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nuevo">¿Es Nuevo? *</label>
+                        <select id="nuevo" name="nuevo">
+                            <option value="No">No</option>
+                            <option value="Sí">Sí</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="precio">Precio (€) *</label>
+                        <input type="number" id="precio" name="precio" required step="0.01" placeholder="19.99">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="stock">Stock</label>
+                        <input type="number" id="stock" name="stock" value="10" min="0">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="imagenURL">URL de la imagen</label>
+                        <input type="url" id="imagenURL" name="imagenURL" placeholder="https://drive.google.com/file/d/...">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <button type="submit" class="btn">➕ Agregar Producto</button>
+                    </div>
+                </form>
+
+                <!-- PREVISUALIZACIÓN -->
+                <div class="preview-section">
+                    <h3>Vista previa en Tienda</h3>
+                    <div class="preview-card">
+                        <div id="previewImageContainer">
+                            <div class="preview-image-placeholder">📷</div>
+                        </div>
+                        <div class="preview-body">
+                            <div class="preview-tags">
+                                <span class="preview-model" id="previewModel">MODELO</span>
+                                <span class="preview-category" id="previewCategory">Perfumes</span>
+                                <span class="preview-new-badge" id="previewNewBadge">NUEVO</span>
+                            </div>
+                            <div class="preview-name" id="previewName">Nombre del producto</div>
+                            <div class="preview-description" id="previewDescription">Descripción corta del producto.</div>
+                            <div class="preview-footer">
+                                <div class="preview-price" id="previewPrice">€0.00</div>
+                                <button type="button" class="preview-btn" id="previewBtn">🛒 Agregar</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <!-- FORMULARIO -->
-            <form id="productForm" class="form-grid">
-                <div class="form-group full-width">
-                    <label for="nombre">Nombre del producto *</label>
-                    <input type="text" id="nombre" name="nombre" required placeholder="Ej: Perfume Floral 100ml">
-                </div>
-                <div class="form-group full-width">
-                    <label for="descripcion">Descripción</label>
-                    <textarea id="descripcion" name="descripcion" placeholder="Describe la fragancia o producto..."></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="precio">Precio (€) *</label>
-                    <input type="number" id="precio" name="precio" required step="0.01" placeholder="19.99">
-                </div>
-                <div class="form-group">
-                    <label for="stock">Stock</label>
-                    <input type="number" id="stock" name="stock" value="10" min="0">
-                </div>
-                <div class="form-group full-width">
-                    <label for="imagenURL">URL de la imagen</label>
-                    <input type="url" id="imagenURL" name="imagenURL" placeholder="https://drive.google.com/file/d/...">
-                </div>
-                <div class="form-group full-width">
-                    <label for="categoria">Categoría</label>
-                    <select id="categoria" name="categoria">
-                        <option value="General">General</option>
-                        <option value="Perfumes">Perfumes</option>
-                        <option value="Fragancias">Fragancias</option>
-                        <option value="Accesorios">Accesorios</option>
-                        <option value="Desechable">Desechable</option>
-                    </select>
-                </div>
-                <div class="form-group full-width">
-                    <button type="submit" class="btn">➕ Agregar Producto</button>
-                </div>
-            </form>
 
             <div id="message" class="message"></div>
-
-            <!-- LISTA -->
-            <div class="product-list">
-                <h2>📦 Productos Registrados</h2>
-                <div class="loading-spinner" id="loadingSpinner">
-                    <div class="spinner"></div>
-                    <p style="color:#888;">Cargando productos...</p>
-                </div>
-                <div id="productList"></div>
-            </div>
         </div>
     </div>
 
@@ -409,7 +394,7 @@
         // ============================================
         // CONFIGURACIÓN API
         // ============================================
-        const API_URL = "https://script.google.com/macros/s/AKfycbwhVw_mk6dPeYo8y2-x0hPspuzxRqx4LKYLXSGXMhNmkBdtI7yka0v2KRdGkPniBaLc/exec";
+        const API_URL = "https://script.google.com/macros/s/AKfycbwWbH-lfapTSCSUVqKhA8QII3FfWYkBhAEM9_E7op4EIkBuFIVxxeY37kNfUW0-x_4B/exec";
 
         let modeloActual = "";
 
@@ -432,7 +417,7 @@
                     if (data.modelos.length) {
                         select.value = data.modelos[0];
                         modeloActual = data.modelos[0];
-                        cargarProductos(modeloActual);
+                        actualizarPrevisualizacion();
                     }
                 } else {
                     showMessage('Error: ' + data.error, 'error');
@@ -448,48 +433,67 @@
         function cambiarModelo() {
             const select = document.getElementById('modeloSelect');
             modeloActual = select.value;
-            if (modeloActual) cargarProductos(modeloActual);
+            actualizarPrevisualizacion();
         }
 
         // ============================================
-        // CARGAR PRODUCTOS
+        // PREVISUALIZACIÓN EN TIEMPO REAL
         // ============================================
-        async function cargarProductos(modelo) {
-            const spinner = document.getElementById('loadingSpinner');
-            const list = document.getElementById('productList');
-            spinner.classList.add('active');
-            document.getElementById('modeloActual').textContent = modelo;
+        function actualizarPrevisualizacion() {
+            const nombre = document.getElementById('nombre').value || 'Nombre del producto';
+            const descripcion = document.getElementById('descripcion').value || 'Descripción corta del producto.';
+            const precioVal = document.getElementById('precio').value;
+            const precio = precioVal ? '€' + parseFloat(precioVal).toFixed(2) : '€0.00';
+            const stock = parseInt(document.getElementById('stock').value) || 0;
+            const categoria = document.getElementById('categoria').value || 'Perfumes';
+            const esNuevo = document.getElementById('nuevo').value;
+            const urlRaw = document.getElementById('imagenURL').value;
 
-            try {
-                const res = await fetch(`${API_URL}?action=obtenerPorModelo&modelo=${encodeURIComponent(modelo)}`);
-                const data = await res.json();
-                if (data.success) {
-                    const productos = data.productos;
-                    document.getElementById('totalProductos').textContent = productos.length;
+            document.getElementById('previewName').textContent = nombre;
+            document.getElementById('previewDescription').textContent = descripcion;
+            document.getElementById('previewPrice').textContent = precio;
+            document.getElementById('previewCategory').textContent = categoria;
+            document.getElementById('previewModel').textContent = modeloActual || 'MODELO';
 
-                    if (!productos.length) {
-                        list.innerHTML = '<p style="color:#888;text-align:center;padding:20px;">No hay productos en este modelo.</p>';
-                    } else {
-                        list.innerHTML = productos.map(p => `
-                            <div class="product-item">
-                                <div class="info">
-                                    <div class="name">${p.Nombre || 'Sin nombre'} <span class="model-tag">${modelo}</span></div>
-                                    <div class="meta">${p.Categoría || p.Categoria || 'General'} · Stock: ${p.Stock || 0}</div>
-                                </div>
-                                <div class="price">${p.Precio ? '€' + parseFloat(p.Precio).toFixed(2) : 'N/D'}</div>
-                                <button class="delete-btn" onclick="eliminarProducto('${modelo}', ${p.ID})">Eliminar</button>
-                            </div>
-                        `).join('');
-                    }
-                } else {
-                    showMessage('Error: ' + data.error, 'error');
+            const newBadge = document.getElementById('previewNewBadge');
+            if (esNuevo === 'Sí') {
+                newBadge.style.display = 'inline-block';
+            } else {
+                newBadge.style.display = 'none';
+            }
+
+            const btn = document.getElementById('previewBtn');
+            if (stock <= 0) {
+                btn.textContent = 'Agotado';
+                btn.disabled = true;
+                btn.style.opacity = '0.6';
+            } else {
+                btn.textContent = '🛒 Agregar';
+                btn.disabled = false;
+                btn.style.opacity = '1';
+            }
+
+            const imgContainer = document.getElementById('previewImageContainer');
+            if (urlRaw) {
+                let imgSrc = urlRaw;
+                const match = urlRaw.match(/\/d\/([a-zA-Z0-9_-]+)/) || urlRaw.match(/id=([a-zA-Z0-9_-]+)/);
+                if (match && match[1]) {
+                    imgSrc = `https://lh3.googleusercontent.com/d/${match[1]}`;
                 }
-            } catch (e) {
-                showMessage('Error de conexión: ' + e.message, 'error');
-            } finally {
-                spinner.classList.remove('active');
+                imgContainer.innerHTML = `<img class="preview-image" src="${imgSrc}" alt="${nombre}" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'preview-image-placeholder\\'>📷</div>';">`;
+            } else {
+                imgContainer.innerHTML = '<div class="preview-image-placeholder">📷</div>';
             }
         }
+
+        // Vincular eventos del formulario a la previsualización
+        ['nombre', 'descripcion', 'precio', 'stock', 'imagenURL', 'categoria', 'nuevo', 'modeloSelect'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.addEventListener('input', actualizarPrevisualizacion);
+                el.addEventListener('change', actualizarPrevisualizacion);
+            }
+        });
 
         // ============================================
         // MOSTRAR MENSAJE DE ESTADO
@@ -508,28 +512,31 @@
         // ============================================
         document.getElementById('productForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            if (!modeloActual) {
+            
+            const modeloSeleccionado = document.getElementById('modeloSelect').value;
+            if (!modeloSeleccionado) {
                 showMessage('❌ Selecciona un modelo primero', 'error');
                 return;
             }
 
-            // Lectura directa de los campos del formulario por su ID
             const nombre = document.getElementById('nombre').value;
             const descripcion = document.getElementById('descripcion').value || '';
             const precio = document.getElementById('precio').value;
             const stock = document.getElementById('stock').value || 0;
             const imagenURL = document.getElementById('imagenURL').value || '';
-            const categoria = document.getElementById('categoria').value || 'General';
+            const categoria = document.getElementById('categoria').value || 'Perfumes';
+            const nuevo = document.getElementById('nuevo').value || 'No';
 
             const params = new URLSearchParams();
             params.append('action', 'agregar');
-            params.append('modelo', modeloActual);
+            params.append('modelo', modeloSeleccionado);
             params.append('nombre', nombre);
             params.append('descripcion', descripcion);
             params.append('precio', precio);
             params.append('imagenURL', imagenURL);
             params.append('stock', stock);
             params.append('categoria', categoria);
+            params.append('nuevo', nuevo);
 
             showMessage('Agregando producto...', 'loading');
             try {
@@ -538,7 +545,7 @@
                 if (data.success) {
                     showMessage('✅ ' + data.message, 'success');
                     this.reset();
-                    cargarProductos(modeloActual);
+                    actualizarPrevisualizacion();
                 } else {
                     showMessage('❌ ' + data.error, 'error');
                 }
@@ -546,26 +553,6 @@
                 showMessage('❌ Error de conexión', 'error');
             }
         });
-
-        // ============================================
-        // ELIMINAR PRODUCTO
-        // ============================================
-        async function eliminarProducto(modelo, id) {
-            if (!confirm(`¿Eliminar producto #${id} de ${modelo}?`)) return;
-            showMessage('Eliminando...', 'loading');
-            try {
-                const res = await fetch(`${API_URL}?action=eliminar&modelo=${encodeURIComponent(modelo)}&id=${id}`);
-                const data = await res.json();
-                if (data.success) {
-                    showMessage('✅ Producto eliminado', 'success');
-                    cargarProductos(modelo);
-                } else {
-                    showMessage('❌ ' + data.error, 'error');
-                }
-            } catch (e) {
-                showMessage('❌ Error de conexión', 'error');
-            }
-        }
 
         // ============================================
         // INICIO AUTOMÁTICO
